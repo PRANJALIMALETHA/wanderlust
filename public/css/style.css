@@ -1,0 +1,119 @@
+/* navbar */
+body {
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container{
+    flex:1;
+}
+.navbar{
+    height: 5rem;
+    background-color: white;
+}
+.fa-compass{
+    color: #fe424d;
+    font-size: 2rem;
+}
+.nav-link{
+    color: #222222 !important;
+}
+
+/* footer */
+.f-info-links a{
+    text-decoration: none;
+    color: #222222;
+}
+.f-info-links a:hover{
+    text-decoration:underline;
+}
+.f-info-links, .f-info-socials, .f-info-brand{
+    color: #222222;
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.f-info-socials i{
+    margin-right:1rem ;
+    font-size: 1.2rem;
+}
+.f-info{
+    text-align: center;
+    height: 8rem;
+    display: flex;
+    background-color: #ebebeb;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: space-evenly;
+}
+
+.listing-card{
+    border: none !important;
+    margin-bottom: 2rem;
+}
+
+.card-img-top{
+    border-radius: 1rem !important;
+    width: 100% !important;
+    object-fit: cover !important;
+    grid-template-rows: masonry;
+    grid-template-columns: masonry;
+}
+
+.card-text p{
+    font-weight: 400;
+}
+.listing-link{
+    text-decoration: none;
+}
+
+/* card effect */
+.card-img-overlay{
+    opacity: 0;
+}
+.card-img-overlay:hover{
+    opacity: 0.2;
+    background-color: white;
+}
+.add-btn{
+    background-color: #fe424d !important;
+    border: none !important;
+    color: #ebebeb !important;
+}
+
+.edit-btn a{
+    text-decoration: none;
+    color: #222222;
+}
+.edit-btn a:hover{
+    text-decoration: underline;
+    color: #222222;
+}
+.edit-btn{
+    display: flex;
+    text-align: center;
+}
+.del-btn{
+    margin-left: 30px;
+    color: #ebebeb !important;
+    background-color: #222222 !important;
+}
+.show-img {
+    max-width: 30vph;  
+    height: 350px;
+}
+
+.editimage-heading {
+    display: block;
+    margin-bottom: 10px; /* Adjust the margin as needed */
+    font-weight: normal; /* Ensures the text is not bold */
+}
+
+.editimage-image {
+    height: 200px;
+    object-fit: cover;
+}
+

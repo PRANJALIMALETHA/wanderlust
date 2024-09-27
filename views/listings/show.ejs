@@ -1,0 +1,89 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+<div class="row mt-3 whole-card">
+    <!-- Listing Title -->
+    <div class="col-8 offset-2 mt-3"> 
+        <h4><%= singlelist.title %></h4>
+    </div>
+
+    <!-- Listing Details Card -->
+    <div class="card col-8 offset-2 mt-3 listing-card">
+        <img src="<%= singlelist.image.url %>" class="card-img-top show-img" alt="Card image">
+        
+        <div class="card-body">
+            <p class="card-text">
+               <b> <i><%= singlelist.owner.username %></i> </b>
+            </p>
+            <p><%= singlelist.description %></p>
+            <p>&#x20B9; <%= singlelist.price.toLocaleString("en-IN") %></p>
+            <p><%= singlelist.location %>, <%= singlelist.country %></p>
+        </div>
+
+        <% if (curruser && curruser._id.equals(singlelist.owner._id)) { %>
+        <!-- Edit/Delete Buttons -->
+        <div class="edit-btn mt-3">
+            <form method="get" action="/listings/<%= singlelist._id %>/edit" class="d-inline">
+                <button type="submit" class="btn btn-black add-btn">Edit</button>
+            </form>
+            <form method="post" action="/listings/<%= singlelist._id %>?_method=DELETE" class="d-inline">
+                <button type="submit" class="btn btn-black add-btn del-btn">Delete Listing</button>
+            </form>
+        </div>
+        <% } %>
+    </div>
+
+    <!-- Review Section -->
+    <div class="col-8 offset-2 mt-3 review">
+        <!-- Review Form -->
+        <div class="card mb-3">
+            <div class="card-body">
+                <% if (curruser) { %>
+                <h5>Leave a Review</h5>
+                <form method="post" action="/listings/<%= singlelist._id %>/reviews" novalidate class="needs-validation">
+                    <div class="mb-3">
+                    <label for="rating" class="form-label">Rating</label>
+                    <fieldset class="starability-slot">
+                        <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+                        <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                        <label for="first-rate1" title="Terrible">1 star</label>
+                        <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                        <label for="first-rate2" title="Not good">2 stars</label>
+                        <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                        <label for="first-rate3" title="Average">3 stars</label>
+                        <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                        <label for="first-rate4" title="Very good">4 stars</label>
+                        <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                        <label for="first-rate5" title="Amazing">5 stars</label>
+                      </fieldset>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="comments" class="form-label">Comments</label>
+                        <textarea name="review[comment]" id="comments" rows="3" class="form-control" required></textarea>
+                        <div class="invalid-feedback">Please provide your comments.</div>
+                    </div>
+                    <button type="submit" class="btn btn-outline-dark">Submit</button>
+                </form>
+                <% } %>
+            </div>
+        </div>
+
+        <!-- Reviews List -->
+        <div class="reviews-list">
+            <p class="mb-3"><strong>All Reviews</strong></p>
+            <div class="row">
+                <% for (let rev of singlelist.review) { %>
+                    <div class="card col-5 ms-3 mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title"> @<%= rev.author.username %></h5>
+                            <p class="card-text"><%= rev.comment %></p>
+                            <p class="card-text"><%= rev.rating %> stars</p>
+                            <p class="starability-result" data-rating="<%= rev.rating %>">
+                              </p>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>
